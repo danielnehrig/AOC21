@@ -1,14 +1,14 @@
-use std::io::{BufRead, Read};
+use std::io::BufRead;
 
 #[derive(Debug)]
-struct Sub {
-    horizontal: i32,
-    depth: i32,
-    aim: i32,
+pub struct Sub {
+    pub horizontal: i32,
+    pub depth: i32,
+    pub aim: i32,
 }
 
 impl Sub {
-    fn new() -> Sub {
+    pub fn new() -> Sub {
         Sub {
             aim: 0,
             depth: 0,
@@ -17,9 +17,9 @@ impl Sub {
     }
 }
 
-fn main() {
+pub fn solve_b() -> i32 {
     let mut sub = Sub::new();
-    let parsed_file = std::fs::read("test.txt")
+    let parsed_file = std::fs::read("./src/day2/test.txt")
         .unwrap()
         .lines()
         .take_while(|n| n.as_ref().unwrap().len() > 0)
@@ -52,6 +52,5 @@ fn main() {
         }
     });
 
-    println!("{}", sub.horizontal * sub.depth);
-    println!("{:?}", sub);
+    return sub.horizontal * sub.depth;
 }

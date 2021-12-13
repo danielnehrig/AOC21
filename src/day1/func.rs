@@ -1,5 +1,5 @@
 use std::fs;
-use std::io::{BufRead};
+use std::io::BufRead;
 
 pub fn input_generator(file: &str) -> Vec<usize> {
     fs::read(file)
@@ -21,12 +21,4 @@ pub fn solve_part2(input: Vec<usize>) -> usize {
             .map(|x| x.iter().sum())
             .collect::<Vec<usize>>(),
     )
-}
-
-fn main() {
-    let input = input_generator("test.txt");
-    let solve_1 = solve_part1(input.clone());
-    let solve_2 = solve_part2(input.clone());
-    println!("Star1 {:?}", solve_1);
-    println!("Star2 {:?}", solve_2);
 }
