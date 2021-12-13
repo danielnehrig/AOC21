@@ -27,7 +27,7 @@ fn main() {
     });
     let gamma_rate = u16::from_str_radix(find_gamma_rate.as_str(), 2).unwrap();
     let epsilon_rate = !gamma_rate & ((1 << find_gamma_rate.len()) - 1);
-    let result = usize::from(gamma_rate as usize * epsilon_rate as usize);
+    let result = gamma_rate as usize * epsilon_rate as usize;
 
     println!("Gamma Rate String: {}", find_gamma_rate);
     println!("Parsed Dec Gamma Rate: {}", gamma_rate);
