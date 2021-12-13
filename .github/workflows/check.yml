@@ -1,0 +1,26 @@
+name: Check
+
+on:
+  push:
+    branches:
+     - master
+
+jobs:
+    test:
+        name: Cargo Check
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - run: date +%W > weekly
+
+            - name: Restore cache
+              id: cache
+              uses: actions/cache@v2
+              with:
+                path: |
+                  ~/.cargo/bin
+                key: ${{ runner.os }}-cargo-${{ hashFiles('weekly') }}
+
+            - name: Cargo Check
+              if: steps.cache.outputs.cache-hit != 'true'
+              run: cargo check
