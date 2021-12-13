@@ -1,16 +1,13 @@
-use anyhow::{anyhow, Result};
-use std::io::{self, BufRead};
+use std::fs;
+use std::io::{BufRead};
 
-pub fn input_generator(input: std::io::Stdin) -> Result<Vec<usize>> {
-    input
-        .lock()
+pub fn input_generator(file: &str) -> Vec<usize> {
+    fs::read(file)
+        .unwrap()
         .lines()
-        .map(|line| {
-            line.unwrap()
-                .parse::<i32>()
-                .map_err(|e| anyhow!("failed to convert '{}': {:?}", line, e))
-        })
-        .collect()
+        .take_while(|n| n.as_ref().unwrap().len() > 0)
+        .map(|e| e.unwrap().parse::<usize>().unwrap())
+        .collect::<Vec<usize>>()
 }
 
 pub fn solve_part1(input: Vec<usize>) -> usize {
@@ -27,8 +24,9 @@ pub fn solve_part2(input: Vec<usize>) -> usize {
 }
 
 fn main() {
-    let stdin = io::stdin();
-    let input = input_generator(stdin).unwrap();
-    let solve_1 = solve_part1(input);
-    let solve_2 = solve_part2(input);
+    let input = input_generator("test.txt");
+    let solve_1 = solve_part1(input.clone());
+    let solve_2 = solve_part2(input.clone());
+    println!("Star1 {:?}", solve_1);
+    println!("Star2 {:?}", solve_2);
 }
