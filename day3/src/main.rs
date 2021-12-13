@@ -8,8 +8,9 @@ fn main() {
         .map(|e| -> String { e.unwrap() })
         .collect::<Vec<String>>();
 
+    let bit_len: usize = parsed_file[0].len();
     let mut find_gamma_rate = String::new();
-    (0..5).for_each(|k| {
+    (0..bit_len).for_each(|k| {
         let nums = parsed_file
             .clone()
             .into_iter()
@@ -24,10 +25,12 @@ fn main() {
             find_gamma_rate.extend(["0"]);
         }
     });
-    let epsilon_rate = find_gamma_rate.clone().parse::<u8>().unwrap();
-    //let result: u32 = (gamma_rate.clone().parse::<u8>().unwrap() * epsilon_rate).into();
+    let gamma_rate = usize::from_str_radix(find_gamma_rate.as_str(), 2).unwrap();
+    let epsilon_rate = 0b110110111100;
+    let result = gamma_rate * epsilon_rate;
 
-    println!("Gamma Rate: {}", find_gamma_rate);
-    println!("Epsilon Rate: {:b}", epsilon_rate);
-    //println!("Result: {}", result);
+    println!("Gamma Rate String: {}", find_gamma_rate);
+    println!("Parsed Dec Gamma Rate: {:b}", gamma_rate);
+    println!("Parsed Dec Epsilon Rate: {:b}", epsilon_rate);
+    println!("Result {}", result);
 }
