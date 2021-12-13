@@ -25,12 +25,12 @@ fn main() {
             find_gamma_rate.extend(["0"]);
         }
     });
-    let gamma_rate = usize::from_str_radix(find_gamma_rate.as_str(), 2).unwrap();
-    let epsilon_rate = 0b110110111100;
-    let result = gamma_rate * epsilon_rate;
+    let gamma_rate = u16::from_str_radix(find_gamma_rate.as_str(), 2).unwrap();
+    let epsilon_rate = !gamma_rate & ((1 << find_gamma_rate.len()) - 1);
+    let result = i32::from(gamma_rate as i32 * epsilon_rate as i32);
 
     println!("Gamma Rate String: {}", find_gamma_rate);
-    println!("Parsed Dec Gamma Rate: {:b}", gamma_rate);
-    println!("Parsed Dec Epsilon Rate: {:b}", epsilon_rate);
+    println!("Parsed Dec Gamma Rate: {}", gamma_rate);
+    println!("Parsed Dec Epsilon Rate: {}", epsilon_rate);
     println!("Result {}", result);
 }
