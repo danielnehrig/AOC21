@@ -1,5 +1,5 @@
 #[test]
-fn day16_solve_example() {
+fn solve_example() {
     let input = "1163751742
 1381373672
 2136511328
@@ -11,11 +11,11 @@ fn day16_solve_example() {
 1293138521
 2311944581";
     let result = super::func::solve_a(input);
-    assert_eq!(result, ());
+    assert_eq!(result, 40);
 }
 
 #[test]
-fn day16_solve_example() {
+fn solve_a() {
     let result = super::func::solve_a(include_str!("test.txt"));
-    assert_eq!(result, ());
+    assert_eq!(result, 540);
 }

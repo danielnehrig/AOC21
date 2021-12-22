@@ -1,7 +1,17 @@
-mod day16;
-use day16::func::solve_a;
+mod day15;
+use day15::func::solve_a;
 
 fn main() {
-    solve_a();
-    ()
+    let input = "1163751742
+1381373672
+2136511328
+3694931569
+7463417111
+1319128137
+1359912421
+3125421639
+1293138521
+2311944581";
+    let result = solve_a(input);
+    println!("result {}", result);
 }
